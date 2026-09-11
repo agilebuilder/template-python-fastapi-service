@@ -1,0 +1,71 @@
+version: "1.0"
+name: fastapi-service
+description: FastAPI + SQLAlchemy 2.x + Pydantic v2 异步 API 服务模板，src 布局 + pyproject.toml 管理
+variables:
+  enabled: true
+  delimiter: "%"
+  filePatterns:
+    mode: include
+    patterns:
+      - "pyproject.toml"
+      - "README.md"
+      - "AGENTS.md"
+      - ".env.example"
+      - "src/**/*.py"
+      - "tests/**/*.py"
+  inquirerQuestions:
+    - name: projectName
+      type: input
+      message: 项目名称
+      default: demo-api
+      required: true
+    - name: packageDir
+      type: input
+      message: Python 包目录名（默认根据项目名自动转为 snake_case）
+      default: "<%= snakeCase(projectName) %>"
+    - name: description
+      type: input
+      message: 项目描述
+      default: 一个 FastAPI 服务
+    - name: author
+      type: input
+      message: 作者
+      default: ""
+    - name: port
+      type: number
+      message: 服务端口
+      default: 8000
+    - name: pythonVersion
+      type: list
+      message: Python 版本
+      choices:
+        - "3.11"
+        - "3.12"
+      default: "3.12"
+hooks:
+  after_write:
+    scriptType: shell
+    script: 'git init && git add -A && git commit -m "chore: init project from template"'
+    errorHandling: warn
+market:
+  slug: fastapi-service
+  name: FastAPI 异步服务
+  summary: FastAPI + SQLAlchemy 2.x + Pydantic v2 的异步 API 服务模板，分层清晰、开箱可跑
+  description: |
+    基于 FastAPI、SQLAlchemy 2.x（asyncio）与 Pydantic v2 的异步 API 服务工程模板。
+
+    - src 布局 + pyproject.toml（hatchling）现代打包方式
+    - 标准分层：api 路由 / services 业务逻辑 / models 数据模型 / schemas 校验模型
+    - pydantic-settings 集中管理配置，支持 .env 环境变量覆盖
+    - 内置健康检查端点与 Item CRUD 示例（SQLite + aiosqlite，开箱即跑）
+    - pytest + pytest-asyncio + httpx AsyncClient 异步测试示例
+    - Ruff 一体化 lint / 格式化配置
+    - 支持自定义项目名、包目录名、服务端口与 Python 版本（3.11/3.12）
+  category: 后端服务
+  tags:
+    - Python
+    - FastAPI
+    - SQLAlchemy
+    - Pydantic
+    - 异步
+  version: 1.0.0
