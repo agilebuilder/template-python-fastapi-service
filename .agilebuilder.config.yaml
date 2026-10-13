@@ -69,3 +69,18 @@ market:
     - Pydantic
     - 异步
   version: 1.0.0
+  gitUrl: https://github.com/agilebuilder/template-python-fastapi-service.git
+  defaultBranch: main
+  englishMetadata:
+    name: FastAPI async service
+    summary: Async API starter with FastAPI, SQLAlchemy 2.x and Pydantic v2.
+    description: A layered async API project with src packaging, environment-based
+      settings, health checks and SQLite item CRUD. Includes pytest/httpx
+      integration examples and Ruff configuration.
+    category: Backend services
+    tags:
+      - Python
+      - FastAPI
+      - SQLAlchemy
+      - Pydantic
+      - Async
