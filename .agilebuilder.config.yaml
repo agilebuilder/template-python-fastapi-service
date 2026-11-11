@@ -1,6 +1,6 @@
 version: "1.0"
 name: fastapi-service
-description: FastAPI + SQLAlchemy 2.x + Pydantic v2 异步 API 服务模板，src 布局 + pyproject.toml 管理
+description: FastAPI + SQLAlchemy 2.x + Pydantic v2 async API service template with src layout and pyproject.toml packaging
 variables:
   enabled: true
   delimiter: "%"
@@ -9,6 +9,7 @@ variables:
     patterns:
       - "pyproject.toml"
       - "README.md"
+      - "README.zh-CN.md"
       - "AGENTS.md"
       - ".env.example"
       - "src/**/*.py"
@@ -16,28 +17,28 @@ variables:
   inquirerQuestions:
     - name: projectName
       type: input
-      message: 项目名称
+      message: Project name
       default: demo-api
       required: true
     - name: packageDir
       type: input
-      message: Python 包目录名（默认根据项目名自动转为 snake_case）
+      message: Python package directory name (defaults to snake_case of project name)
       default: "<%= snakeCase(projectName) %>"
     - name: description
       type: input
-      message: 项目描述
-      default: 一个 FastAPI 服务
+      message: Project description
+      default: A FastAPI service
     - name: author
       type: input
-      message: 作者
+      message: Author
       default: ""
     - name: port
       type: number
-      message: 服务端口
+      message: Server port
       default: 8000
     - name: pythonVersion
       type: list
-      message: Python 版本
+      message: Python version
       choices:
         - "3.11"
         - "3.12"
